@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import WeScan
 
 class Utils {
     
