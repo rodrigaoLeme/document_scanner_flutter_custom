@@ -27,27 +27,22 @@ apply plugin: 'kotlin-android'
 
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 34
     namespace 'com.rodrigao.document_scanner_flutter_custom'
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
-        ndkVersion "21.1.6352462"
-        ndk {
-            moduleName "Scanner"
-            abiFilters 'armeabi-v7a'
-        }
     }
 
     sourceSets.main {
-        //jniLibs.srcDirs 'libs'
         java.srcDirs += 'src/main/kotlin'
         jni.srcDirs = []
         jniLibs.srcDir 'src/main/libs'
     }
+
     buildTypes {
         release {
             minifyEnabled false
