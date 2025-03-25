@@ -28,6 +28,7 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 29
+    namespace 'com.rodrigao.document_scanner_flutter_custom'
 
     defaultConfig {
         minSdkVersion 21
