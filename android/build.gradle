@@ -27,7 +27,7 @@ apply plugin: 'kotlin-android'
 
 
 android {
-    compileSdkVersion 34
+    compileSdkVersion 35
     namespace 'com.rodrigao.document_scanner_flutter_custom'
 
     defaultConfig {
@@ -35,6 +35,15 @@ android {
         targetSdkVersion 34
         versionCode 1
         versionName "1.0.1"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
     }
 
     sourceSets.main {
