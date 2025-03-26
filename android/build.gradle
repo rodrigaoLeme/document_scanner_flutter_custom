@@ -1,6 +1,6 @@
 plugins {
     id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.android' version '1.9.24'
 }
 
 group 'com.document.scanner.flutter.document_scanner_flutter'
@@ -41,14 +41,14 @@ android {
 }
 
 repositories {
-    maven { url "https://www.jitpack.io" }
+    maven { url "https://jitpack.io" }
     google()
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
     implementation 'androidx.core:core-ktx:1.5.0'
     implementation 'androidx.annotation:annotation:1.2.0'
