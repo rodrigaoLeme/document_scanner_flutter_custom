@@ -71,8 +71,11 @@ public class PickImageFragment extends Fragment {
     private void clearTempImages() {
         try {
             File tempFolder = new File(ScanConstants.IMAGE_PATH);
-            for (File f : tempFolder.listFiles())
-                f.delete();
+            File[] files = tempFolder.listFiles();
+            if (files != null) {
+                for (File f : files)
+                    f.delete();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
