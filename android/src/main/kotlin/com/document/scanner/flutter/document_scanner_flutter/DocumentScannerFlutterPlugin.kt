@@ -32,7 +32,6 @@ import androidx.core.net.toFile
 import com.scanlibrary.ScanActivity
 import com.scanlibrary.ScanConstants
 import kotlin.collections.HashMap
-import com.scanlibrary.ScanConstants
 
 
 /** DocumentScannerFlutterPlugin */
