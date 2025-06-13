@@ -32,6 +32,7 @@ import androidx.core.net.toFile
 import com.scanlibrary.ScanActivity
 import com.scanlibrary.ScanConstants
 import kotlin.collections.HashMap
+import com.scanlibrary.ScanConstants
 
 
 /** DocumentScannerFlutterPlugin */
@@ -91,22 +92,32 @@ class DocumentScannerFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityA
         activityPluginBinding = null
     }
 
-    private fun composeIntentArguments(intent:Intent) = mapOf(
-        ScanConstants.SCAN_NEXT_TEXT to "ANDROID_NEXT_BUTTON_LABEL",
-        ScanConstants.SCAN_SAVE_TEXT to "ANDROID_SAVE_BUTTON_LABEL",
-        ScanConstants.SCAN_ROTATE_LEFT_TEXT to "ANDROID_ROTATE_LEFT_LABEL",
-        ScanConstants.SCAN_ROTATE_RIGHT_TEXT to "ANDROID_ROTATE_RIGHT_LABEL",
-        ScanConstants.SCAN_ORG_TEXT to "ANDROID_ORIGINAL_LABEL",
-        ScanConstants.SCAN_BNW_TEXT to "ANDROID_BMW_LABEL",
-        ScanConstants.SCAN_SCANNING_MESSAGE to "ANDROID_SCANNING_MESSAGE",
-        ScanConstants.SCAN_LOADING_MESSAGE to "ANDROID_LOADING_MESSAGE",
-        ScanConstants.SCAN_APPLYING_FILTER_MESSAGE to "ANDROID_APPLYING_FILTER_MESSAGE",
-        ScanConstants.SCAN_CANT_CROP_ERROR_TITLE to "ANDROID_CANT_CROP_ERROR_TITLE",
-        ScanConstants.SCAN_CANT_CROP_ERROR_MESSAGE to "ANDROID_CANT_CROP_ERROR_MESSAGE",
-        ScanConstants.SCAN_OK_LABEL to "ANDROID_OK_LABEL"
-    ).entries.filter { call.hasArgument(it.value) && call.argument<String>(it.value) != null }.forEach {
-        intent.putExtra(it.key,  call.argument<String>(it.value))
+    private fun composeIntentArguments(intent: Intent) {
+        val keys = mapOf(
+            ScanConstants.SCAN_NEXT_TEXT to "ANDROID_NEXT_BUTTON_LABEL",
+            ScanConstants.SCAN_SAVE_TEXT to "ANDROID_SAVE_BUTTON_LABEL",
+            ScanConstants.SCAN_ROTATE_LEFT_TEXT to "ANDROID_ROTATE_LEFT_LABEL",
+            ScanConstants.SCAN_ROTATE_RIGHT_TEXT to "ANDROID_ROTATE_RIGHT_LABEL",
+            ScanConstants.SCAN_ORG_TEXT to "ANDROID_ORIGINAL_LABEL",
+            ScanConstants.SCAN_BNW_TEXT to "ANDROID_BMW_LABEL",
+            ScanConstants.SCAN_SCANNING_MESSAGE to "ANDROID_SCANNING_MESSAGE",
+            ScanConstants.SCAN_LOADING_MESSAGE to "ANDROID_LOADING_MESSAGE",
+            ScanConstants.SCAN_APPLYING_FILTER_MESSAGE to "ANDROID_APPLYING_FILTER_MESSAGE",
+            ScanConstants.SCAN_CANT_CROP_ERROR_TITLE to "ANDROID_CANT_CROP_ERROR_TITLE",
+            ScanConstants.SCAN_CANT_CROP_ERROR_MESSAGE to "ANDROID_CANT_CROP_ERROR_MESSAGE",
+            ScanConstants.SCAN_OK_LABEL to "ANDROID_OK_LABEL"
+        )
+
+        for ((key, labelKey) in keys) {
+            if (call.hasArgument(labelKey)) {
+                val value = call.argument<String>(labelKey)
+                if (value != null) {
+                    intent.putExtra(key, value)
+                }
+            }
+        }
     }
+
 
     private fun camera() {
         activityPluginBinding?.activity?.apply {
